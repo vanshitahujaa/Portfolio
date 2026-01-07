@@ -15,7 +15,7 @@ const testimonials: Testimonial[] = [
         name: 'Kamal Kant',
         role: 'Founder & CEO',
         company: 'Dental AI',
-        quote: 'Vanshit delivered our MVP in record time. The code was clean, well-documented, and the system has been running smoothly for months. Highly recommend for any full-stack work.',
+        quote: 'Vanshit worked on our MVP in record time. The code was clean, well-documented, and the system has been running smoothly for months. Highly recommend for any full-stack work.',
     },
     {
         name: 'Weizhi Li',

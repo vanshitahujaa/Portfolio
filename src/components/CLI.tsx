@@ -5,6 +5,7 @@ import BioSection from './BioSection';
 import ProjectCard, { PROJECTS } from './ProjectCard';
 import { ResumeButton, ContactButton } from './PremiumButton';
 import Floating3D from './Floating3D';
+import PricingPackages from './PricingPackages';
 
 interface CLIProps {
   onModeChange: (mode: string) => void;
@@ -478,74 +479,153 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
             </div>
           </motion.section>
 
-          {/* Skills Section */}
+          {/* Skills Section - Innovative Orbit Design */}
           <motion.section
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
             className="mt-16 mb-16"
           >
-            <h2 className="text-xl font-semibold text-white mb-6">Core Skills</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                { name: 'React & TypeScript', color: '#00d9ff' },
-                { name: 'Python & FastAPI', color: '#22c55e' },
-                { name: 'Docker & CI/CD', color: '#8b5cf6' },
-                { name: 'System Design', color: '#f59e0b' },
-                { name: 'Node.js & Express', color: '#22c55e' },
-                { name: 'PostgreSQL & MongoDB', color: '#00d9ff' },
-                { name: 'AWS & GCP', color: '#f59e9b' },
-                { name: 'Reliability Engineering', color: '#8b5cf6' },
-              ].map((skill, i) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.9 + i * 0.05 }}
-                  className="glass-card p-4 text-center group hover:scale-105 transition-transform"
-                  style={{ borderColor: `${skill.color}30` }}
-                >
-                  <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
-                    {skill.name}
-                  </span>
-                </motion.div>
-              ))}
+            <h2 className="text-xl font-semibold text-white mb-8">Core Skills</h2>
+
+            {/* Skills as animated experience bars */}
+            <div className="glass-card p-8">
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { name: 'Backend Development', level: 95, icon: '⚡', color: '#00d9ff' },
+                  { name: 'System Design & Architecture', level: 90, icon: '🏗️', color: '#8b5cf6' },
+                  { name: 'DevOps & CI/CD', level: 88, icon: '🔄', color: '#22c55e' },
+                  { name: 'React & TypeScript', level: 85, icon: '⚛️', color: '#00d9ff' },
+                  { name: 'Python & FastAPI', level: 92, icon: '🐍', color: '#22c55e' },
+                  { name: 'Docker & Kubernetes', level: 85, icon: '🐳', color: '#8b5cf6' },
+                ].map((skill, i) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.9 + i * 0.08 }}
+                    className="group"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xl">{skill.icon}</span>
+                        <span className="text-white font-medium text-sm">{skill.name}</span>
+                      </div>
+                      <span className="text-white/40 text-xs font-mono">{skill.level}%</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-white/[0.05] overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1.2, delay: 1 + i * 0.1, ease: 'easeOut' }}
+                        className="h-full rounded-full relative overflow-hidden"
+                        style={{
+                          background: `linear-gradient(90deg, ${skill.color}, ${skill.color}80)`,
+                          boxShadow: `0 0 20px ${skill.color}40`
+                        }}
+                      >
+                        {/* Animated shimmer */}
+                        <div
+                          className="absolute inset-0 opacity-30"
+                          style={{
+                            background: 'linear-gradient(90deg, transparent, white 50%, transparent)',
+                            animation: 'shimmer 2s infinite',
+                          }}
+                        />
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Tech tags */}
+              <div className="mt-8 flex flex-wrap gap-2 justify-center">
+                {['AWS', 'GCP', 'PostgreSQL', 'MongoDB', 'Redis', 'Node.js', 'GraphQL', 'Kafka'].map((tech, i) => (
+                  <motion.span
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.5 + i * 0.05 }}
+                    className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-mono hover:bg-white/10 hover:text-white transition-all cursor-default"
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
             </div>
           </motion.section>
 
-          {/* Testimonials Preview */}
+          {/* Testimonials - Premium Card Design */}
           <motion.section
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
             className="mb-16"
           >
-            <h2 className="text-xl font-semibold text-white mb-6">What People Say</h2>
+            <h2 className="text-xl font-semibold text-white mb-8">What People Say</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { name: 'Kamal Kant', role: 'CEO, Dental AI', quote: 'Delivered our MVP in record time. Clean code, excellent documentation.' },
-                { name: 'Weizhi Li', role: 'CEO, Adaptive Machines', quote: 'Exceptional work on our ML pipeline. Production-ready code that exceeded expectations.' },
+                { name: 'Kamal Kant', role: 'Founder & CEO', company: 'Dental AI', quote: 'Vanshit delivered our MVP in record time. The code was clean, well-documented, and the system has been running flawlessly for months.' },
+                { name: 'Weizhi Li', role: 'CEO', company: 'Adaptive Machines', quote: 'Exceptional work on our machine learning pipeline. Production-ready code that exceeded our expectations.' },
               ].map((testimonial, i) => (
                 <motion.div
                   key={testimonial.name}
-                  initial={{ opacity: 0, x: i === 0 ? -20 : 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 + i * 0.1 }}
-                  className="glass-card p-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 + i * 0.15 }}
+                  className="glass-card p-8 relative overflow-hidden group hover:border-white/20 transition-all"
+                  style={{
+                    background: `linear-gradient(135deg, rgba(0,217,255,0.03) 0%, rgba(139,92,246,0.03) 100%)`,
+                  }}
                 >
-                  <p className="text-white/70 italic mb-4">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00d9ff] to-[#8b5cf6] flex items-center justify-center text-white font-bold text-sm">
+                  {/* Quote icon */}
+                  <div className="absolute top-4 right-4 text-white/5 group-hover:text-white/10 transition-colors">
+                    <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                  </div>
+
+                  {/* Quote */}
+                  <p className="text-white/80 text-lg leading-relaxed mb-6 relative z-10">
+                    "{testimonial.quote}"
+                  </p>
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4 relative z-10">
+                    <div
+                      className="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-bold text-lg"
+                      style={{
+                        background: `linear-gradient(135deg, #00d9ff, #8b5cf6)`,
+                        boxShadow: '0 8px 20px rgba(0,217,255,0.3)'
+                      }}
+                    >
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-white font-medium text-sm">{testimonial.name}</p>
-                      <p className="text-white/40 text-xs">{testimonial.role}</p>
+                      <p className="text-white font-semibold">{testimonial.name}</p>
+                      <p className="text-white/50 text-sm">{testimonial.role} • {testimonial.company}</p>
                     </div>
                   </div>
+
+                  {/* Bottom gradient accent */}
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                    style={{ background: 'linear-gradient(90deg, #00d9ff, #8b5cf6)' }}
+                  />
                 </motion.div>
               ))}
             </div>
+          </motion.section>
+
+          {/* Pricing Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.95 }}
+            className="mb-16"
+          >
+            <h2 className="text-xl font-semibold text-white mb-8">Freelance Packages</h2>
+            <PricingPackages />
           </motion.section>
 
           {/* Hire Me CTA */}

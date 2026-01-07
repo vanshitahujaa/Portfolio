@@ -5,17 +5,18 @@ export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
     const [isClicking, setIsClicking] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const cursorRef = useRef<HTMLDivElement>(null);
 
+    // Mouse position
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
-    const springConfig = { damping: 25, stiffness: 400 };
+    // Smooth spring physics for the trailing ring
+    const springConfig = { damping: 20, stiffness: 300, mass: 0.5 };
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
-        // Check if device has fine pointer (mouse)
+        // Only show custom cursor on fine pointer devices (mouse)
         const hasMouse = window.matchMedia('(pointer: fine)').matches;
         if (!hasMouse) return;
 
@@ -30,13 +31,18 @@ export default function CustomCursor() {
 
         const handleMouseEnter = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (
+            // Check for interactive elements
+            const isInteractive =
                 target.tagName === 'BUTTON' ||
                 target.tagName === 'A' ||
+                target.tagName === 'INPUT' ||
+                target.tagName === 'TEXTAREA' ||
                 target.closest('button') ||
                 target.closest('a') ||
-                target.classList.contains('magnetic')
-            ) {
+                target.classList.contains('magnetic') ||
+                window.getComputedStyle(target).cursor === 'pointer';
+
+            if (isInteractive) {
                 setIsHovering(true);
             }
         };
@@ -64,70 +70,58 @@ export default function CustomCursor() {
 
     return (
         <>
-            {/* Main cursor */}
+            {/* Main precise dot - no lag */}
             <motion.div
-                ref={cursorRef}
                 className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
                 style={{
-                    x: cursorXSpring,
-                    y: cursorYSpring,
+                    x: cursorX,
+                    y: cursorY,
+                    translateX: '-50%',
+                    translateY: '-50%',
                 }}
             >
-                <motion.div
-                    className="relative -translate-x-1/2 -translate-y-1/2"
-                    animate={{
-                        scale: isClicking ? 0.8 : isHovering ? 1.5 : 1,
-                    }}
-                    transition={{ duration: 0.15 }}
-                >
-                    {/* Core */}
-                    <div
-                        className="w-4 h-4 rounded-full bg-white"
-                        style={{
-                            boxShadow: isHovering
-                                ? '0 0 20px rgba(0, 217, 255, 0.8), 0 0 40px rgba(139, 92, 246, 0.6)'
-                                : '0 0 10px rgba(255, 255, 255, 0.5)',
-                        }}
-                    />
-                </motion.div>
+                <div className="w-2 h-2 bg-white rounded-full" />
             </motion.div>
 
-            {/* Trailing ring */}
+            {/* Trailing ring - with spring physics */}
             <motion.div
-                className="fixed top-0 left-0 pointer-events-none z-[9998]"
+                className="fixed top-0 left-0 pointer-events-none z-[9998] mix-blend-difference"
                 style={{
                     x: cursorXSpring,
                     y: cursorYSpring,
+                    translateX: '-50%',
+                    translateY: '-50%',
                 }}
             >
                 <motion.div
-                    className="relative -translate-x-1/2 -translate-y-1/2"
+                    className="rounded-full border border-white"
                     animate={{
-                        scale: isHovering ? 2 : 1,
-                        opacity: isHovering ? 0.5 : 0.3,
+                        width: isHovering ? 40 : 20,
+                        height: isHovering ? 40 : 20,
+                        opacity: isClicking ? 0.8 : isHovering ? 1 : 0.5,
+                        scale: isClicking ? 0.75 : 1,
+                        backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
                     }}
-                    transition={{ duration: 0.3 }}
-                >
-                    <div
-                        className="w-10 h-10 rounded-full border border-white/30"
-                        style={{
-                            boxShadow: '0 0 15px rgba(0, 217, 255, 0.3)',
-                        }}
-                    />
-                </motion.div>
+                    transition={{
+                        type: 'spring',
+                        damping: 25,
+                        stiffness: 400,
+                        mass: 0.5
+                    }}
+                />
             </motion.div>
 
             {/* Global style to hide default cursor */}
             <style>{`
-        * {
-          cursor: none !important;
-        }
-        @media (pointer: coarse) {
-          * {
-            cursor: auto !important;
-          }
-        }
-      `}</style>
+                * {
+                    cursor: none !important;
+                }
+                @media (pointer: coarse) {
+                    * {
+                        cursor: auto !important;
+                    }
+                }
+            `}</style>
         </>
     );
 }
