@@ -477,6 +477,113 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
               ))}
             </div>
           </motion.section>
+
+          {/* Skills Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mt-16 mb-16"
+          >
+            <h2 className="text-xl font-semibold text-white mb-6">Core Skills</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: 'React & TypeScript', color: '#00d9ff' },
+                { name: 'Python & FastAPI', color: '#22c55e' },
+                { name: 'Docker & CI/CD', color: '#8b5cf6' },
+                { name: 'System Design', color: '#f59e0b' },
+                { name: 'Node.js & Express', color: '#22c55e' },
+                { name: 'PostgreSQL & MongoDB', color: '#00d9ff' },
+                { name: 'AWS & GCP', color: '#f59e9b' },
+                { name: 'Reliability Engineering', color: '#8b5cf6' },
+              ].map((skill, i) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.9 + i * 0.05 }}
+                  className="glass-card p-4 text-center group hover:scale-105 transition-transform"
+                  style={{ borderColor: `${skill.color}30` }}
+                >
+                  <span className="text-white/80 text-sm font-medium group-hover:text-white transition-colors">
+                    {skill.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Testimonials Preview */}
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9 }}
+            className="mb-16"
+          >
+            <h2 className="text-xl font-semibold text-white mb-6">What People Say</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { name: 'Kamal Kant', role: 'CEO, Dental AI', quote: 'Delivered our MVP in record time. Clean code, excellent documentation.' },
+                { name: 'Weizhi Li', role: 'CEO, Adaptive Machines', quote: 'Exceptional work on our ML pipeline. Production-ready code that exceeded expectations.' },
+              ].map((testimonial, i) => (
+                <motion.div
+                  key={testimonial.name}
+                  initial={{ opacity: 0, x: i === 0 ? -20 : 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1 + i * 0.1 }}
+                  className="glass-card p-6"
+                >
+                  <p className="text-white/70 italic mb-4">"{testimonial.quote}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00d9ff] to-[#8b5cf6] flex items-center justify-center text-white font-bold text-sm">
+                      {testimonial.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="text-white font-medium text-sm">{testimonial.name}</p>
+                      <p className="text-white/40 text-xs">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Hire Me CTA */}
+          <motion.section
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="mb-16"
+          >
+            <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
+              {/* Background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#00d9ff]/10 via-transparent to-[#8b5cf6]/10" />
+
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/20 text-[#22c55e] text-sm font-medium mb-6">
+                  <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
+                  Available for Hire
+                </div>
+
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Let's Build Something{' '}
+                  <span className="bg-gradient-to-r from-[#00d9ff] to-[#8b5cf6] bg-clip-text text-transparent">
+                    Amazing
+                  </span>
+                </h2>
+
+                <p className="text-white/60 max-w-xl mx-auto mb-8">
+                  Looking for a developer who ships production-ready code? Whether it's a new product,
+                  a complex backend system, or reliability engineering — I'd love to help.
+                </p>
+
+                <div className="flex items-center justify-center gap-4 flex-wrap">
+                  <ContactButton />
+                  <ResumeButton />
+                </div>
+              </div>
+            </div>
+          </motion.section>
         </div>
       </div>
     );
