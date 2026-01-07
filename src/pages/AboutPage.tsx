@@ -29,8 +29,14 @@ const timeline: TimelineItem[] = [
     },
     {
         year: '2024',
-        title: 'SDE Intern → Team Lead',
-        description: 'Joined Signity Software Solutions. Promoted to lead an 8-member team owning CI/CD and deployment pipelines.',
+        title: 'SDE Intern',
+        description: 'Joined Signity Software Solutions for two separate stints. Built responsive React.js components and optimized backend services.',
+        type: 'work',
+    },
+    {
+        year: '2024',
+        title: 'Team Lead at Bluestock',
+        description: 'Led an 8-member team at Bluestock. Managed sprint planning, code reviews, and delivery of client projects.',
         type: 'work',
     },
     {

@@ -8,24 +8,23 @@ import Floating3D from '../components/Floating3D';
 export default function RecruiterMode() {
   const experience = [
     {
-      company: 'Signity Software Solutions',
-      role: 'SDE Intern → Team Lead',
-      period: 'Jun 2024 – Present',
+      company: 'Bluestock™',
+      role: 'Team Lead',
+      period: 'Dec 2024 – Jan 2025',
       highlights: [
-        'Built responsive React.js UI components with TypeScript — 15% faster page loads',
-        'Optimized core backend services — 30% improvement in request throughput',
-        'Promoted to lead 8-member team: code reviews, delivery management',
-        'Automated deployment pipelines — reduced release time by 20%',
+        'Led 8-member team: code reviews, delivery management, and sprint planning',
+        'Built SEO optimization algorithm for improved keyword clustering',
+        'Delivered responsive prototypes and managed client deliverables',
       ],
     },
     {
-      company: 'Bluestock™',
-      role: 'Web Developer Intern',
-      period: 'Dec 2024 – Jan 2025',
+      company: 'Signity Software Solutions',
+      role: 'SDE Intern',
+      period: '2 Months (Cumulative)',
       highlights: [
-        'Completed focused training in HTML, CSS, JavaScript fundamentals',
-        'Delivered responsive prototypes for client projects',
-        'Built SEO optimization algorithm for improved keyword clustering',
+        'Built responsive React.js UI components with TypeScript — 15% faster page loads',
+        'Optimized core backend services — 30% improvement in request throughput',
+        'Automated deployment pipelines — reduced release time by 20%',
       ],
     },
     {
