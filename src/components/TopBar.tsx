@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
-import { ArrowLeft, Download, Mail, Menu, X } from 'lucide-react';
+import { ArrowLeft, Download, Mail, Menu, X, Sun, Moon } from 'lucide-react';
 import { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
 
 interface TopBarProps {
   mode: string;
@@ -19,14 +20,15 @@ const modeColors: Record<string, string> = {
 
 export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
   const accentColor = modeColors[mode] || '#00d9ff';
 
   const handleDownload = () => {
-    window.open('/Vanshit_SDE_Resume.pdf', '_blank');
+    window.open('/data/Vanshit_SDE_Resume.pdf', '_blank');
   };
 
   const handleContact = () => {
-    window.location.href = 'mailto:vanshit.ahuja.23cse@bmu.edu.in';
+    window.location.href = 'mailto:vanshitahuja@gmail.com';
   };
 
   return (
@@ -44,7 +46,7 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
               {/* Back Button */}
               <motion.button
                 onClick={onBack}
-                className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group"
+                className="flex items-center gap-2 text-white/70 hover:text-white transition-colors group magnetic"
                 whileHover={{ x: -3 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -73,7 +75,7 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
                 <button
                   key={m}
                   onClick={() => onNavigate?.(m)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${mode === m
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all magnetic ${mode === m
                     ? 'bg-white/10 text-white'
                     : 'text-white/50 hover:text-white hover:bg-white/5'
                     }`}
@@ -88,6 +90,22 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
 
             {/* Right Section */}
             <div className="flex items-center gap-3">
+              {/* Theme Toggle */}
+              <motion.button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 transition-all magnetic"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              >
+                <motion.div
+                  animate={{ rotate: theme === 'dark' ? 0 : 180 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                </motion.div>
+              </motion.button>
+
               {/* Status Badge */}
               <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/20">
                 <div className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
@@ -97,7 +115,7 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
               {/* Contact Button */}
               <motion.button
                 onClick={handleContact}
-                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all"
+                className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all magnetic"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -108,7 +126,7 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
               {/* Resume Button */}
               <motion.button
                 onClick={handleDownload}
-                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#00d9ff] to-[#8b5cf6] text-[#0a0a0f] font-semibold text-sm hover:shadow-[0_0_30px_rgba(0,217,255,0.4)] transition-all"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#00d9ff] to-[#8b5cf6] text-[#0a0a0f] font-semibold text-sm hover:shadow-[0_0_30px_rgba(0,217,255,0.4)] transition-all magnetic"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

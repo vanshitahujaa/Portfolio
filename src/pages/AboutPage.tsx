@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { Code, Rocket, Zap, Award } from 'lucide-react';
+import { Code, Rocket, Zap, Award, Github } from 'lucide-react';
 import BioSection from '../components/BioSection';
 import ProjectCard, { PROJECTS } from '../components/ProjectCard';
 import { ResumeButton, ContactButton } from '../components/PremiumButton';
 import Floating3D from '../components/Floating3D';
+import Testimonials from '../components/Testimonials';
+import GitHubStats from '../components/GitHubStats';
 
 interface TimelineItem {
     year: string;
@@ -300,6 +302,26 @@ export default function AboutPage() {
                     </div>
                 </section>
 
+                {/* Social Proof Section */}
+                <section className="mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="text-4xl font-bold text-white mb-4">Social Proof</h2>
+                        <p className="text-white/60 max-w-xl mx-auto">
+                            What people say and my open-source activity.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid lg:grid-cols-2 gap-6">
+                        <Testimonials />
+                        <GitHubStats />
+                    </div>
+                </section>
+
                 {/* Projects Section */}
                 <section className="mb-20">
                     <motion.div
@@ -319,6 +341,24 @@ export default function AboutPage() {
                             <ProjectCard key={i} project={project} index={i} />
                         ))}
                     </div>
+
+                    {/* Open Source CTA */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mt-8 text-center"
+                    >
+                        <a
+                            href="https://github.com/vanshitahujaa/Portfolio"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white/70 hover:text-white hover:bg-white/10 transition-all magnetic"
+                        >
+                            <Github className="w-5 h-5" />
+                            <span>View Portfolio Source Code</span>
+                        </a>
+                    </motion.div>
                 </section>
 
                 {/* CTA Section */}

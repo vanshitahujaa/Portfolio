@@ -98,7 +98,42 @@ Available commands:
   whoami      - Who am I?
   projects    - List all projects
   contact     - Get contact info
+  github      - View source code
+  
+Type 'help --secret' for easter eggs 🥚
 `;
+
+const SECRET_HELP = `
+🥚 Easter Eggs:
+  sudo hire-me    - Special hiring message
+  matrix          - Enter the Matrix
+  party           - Celebration mode
+  coffee          - Developer fuel
+  fortune         - Random wisdom
+`;
+
+const MATRIX_ASCII = `
+Wake up, Neo...
+The Matrix has you...
+Follow the white rabbit.
+
+[!] Connection established to Vanshit's server
+[+] Skill tree loaded: Full-Stack, DevOps, SRE
+[+] Experience: 40+ projects compiled
+[>] Ready to deploy production code
+
+Knock, knock, ${new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 18 ? 'Good afternoon' : 'Good evening'}...
+`;
+
+const FORTUNES = [
+  "You will merge 10 PRs without conflicts today.",
+  "A mysterious bug will reveal itself before standup.",
+  "Docker containers sense your fear. Stay calm.",
+  "The code you write today will confuse you in 6 months.",
+  "sudo make me a sandwich - PERMISSION GRANTED",
+  "Your next deployment will be flawless. Maybe.",
+  "The cloud is just someone else's computer having a good day.",
+];
 
 export default function CLI({ onModeChange }: CLIProps) {
   const [input, setInput] = useState('');
@@ -133,6 +168,9 @@ export default function CLI({ onModeChange }: CLIProps) {
     switch (command) {
       case 'help':
         output = HELP_TEXT;
+        break;
+      case 'help --secret':
+        output = SECRET_HELP;
         break;
       case 'clear':
         setHistory([]);
@@ -178,6 +216,84 @@ GitHub: github.com/vanshitahujaa
 LinkedIn: linkedin.com/in/vanshit-ahuja
 
 Status: Open to opportunities!
+`;
+        break;
+      case 'github':
+        output = `
+📦 Portfolio Source Code
+GitHub: github.com/vanshitahujaa/Portfolio
+
+Built with: React 19 + TypeScript + Three.js + Framer Motion
+Open source - feel free to fork and customize!
+`;
+        window.open('https://github.com/vanshitahujaa/Portfolio', '_blank');
+        break;
+      case 'sudo hire-me':
+        output = `
+🎉 ACCESS GRANTED 🎉
+
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║   🚀 CONGRATULATIONS! You've unlocked the hiring mode!   ║
+║                                                           ║
+║   ┌─────────────────────────────────────────────────┐     ║
+║   │  Vanshit is:                                    │     ║
+║   │  ✓ Available for full-time roles               │     ║
+║   │  ✓ Open to exciting freelance projects         │     ║
+║   │  ✓ Ready to ship production code on Day 1     │     ║
+║   └─────────────────────────────────────────────────┘     ║
+║                                                           ║
+║   📧 vanshitahuja@gmail.com                              ║
+║   💼 linkedin.com/in/vanshit-ahuja                       ║
+║                                                           ║
+║   Let's build something amazing together! 🔥              ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+`;
+        break;
+      case 'matrix':
+        output = MATRIX_ASCII;
+        break;
+      case 'party':
+        output = `
+🎊🎉🥳 PARTY MODE ACTIVATED! 🥳🎉🎊
+
+    🎈  🎈  🎈  🎈  🎈
+      \\  |  /
+       \\ | /
+  🎂 ===★=== 🎂
+       / | \\
+      /  |  \\
+    🎈  🎈  🎈  🎈  🎈
+
+Thanks for exploring! You're awesome! 🌟
+`;
+        break;
+      case 'coffee':
+        output = `
+☕ FUEL DISPENSED ☕
+
+    ( (
+     ) )
+   .______.
+   |      |]
+   \\      /
+    \`----'
+
+  "Code runs on caffeine and determination"
+  
+  Current caffeine level: ████████░░ 80%
+  Lines of code remaining: ∞
+`;
+        break;
+      case 'fortune':
+        output = `
+🔮 Your Developer Fortune:
+
+"${FORTUNES[Math.floor(Math.random() * FORTUNES.length)]}"
+
+Lucky numbers: ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}
+Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() * 4)]}
 `;
         break;
       case 'visual':
