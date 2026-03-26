@@ -208,6 +208,10 @@ Featured Projects:
 
 4. Glaucoma Detection - Medical ML with Grad-CAM
    GitHub: github.com/vanshitahujaa/glaucoma-detection
+
+5. ApplyOps - Job Application Automation Platform
+   Live: apply-ops.vercel.app
+   GitHub: github.com/vanshitahujaa/Apply-Ops
 `;
         break;
       case 'contact':

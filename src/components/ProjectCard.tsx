@@ -43,6 +43,14 @@ export const PROJECTS: Project[] = [
         githubUrl: 'https://github.com/vanshitahujaa/glaucoma-detection',
         accentColor: '#22c55e',
     },
+    {
+        title: 'ApplyOps',
+        description: 'Job Application Automation & Optimization Platform. Auto-track applications via Gmail, generate tailored resumes with ATS scoring, create personalized cover letters, and analyze job search performance with response rate analytics.',
+        techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL', 'Prisma'],
+        githubUrl: 'https://github.com/vanshitahujaa/Apply-Ops',
+        liveUrl: 'https://apply-ops.vercel.app',
+        accentColor: '#f59e0b',
+    },
 ];
 
 interface ProjectCardProps {

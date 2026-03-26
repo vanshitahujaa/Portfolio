@@ -12,7 +12,7 @@ const bioData = {
     tagline: 'Building systems that don\'t break',
     location: 'India',
     email: 'vanshitahuja@gmail.com',
-    photo: '/vanshit-photo.png',
+    photo: '/vanshit-photo.jpg',
     education: {
         degree: 'B.Tech in Computer Science',
         university: 'BML Munjal University',
