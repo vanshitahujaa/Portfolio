@@ -86,31 +86,214 @@ const ASCII_INTRO = `
 ╚═══════════════════════════════════════════════════════════════════╝
 `;
 
+const MODE_NAMES = ['recruiter', 'founder', 'engineer', 'devops', 'systems', 'about'];
+
 const HELP_TEXT = `
-Available commands:
-  recruiter   - View portfolio for recruiters
-  founder     - View founder/startup perspective
-  engineer    - Technical deep-dive
-  devops      - Infrastructure & CI/CD
-  systems     - Failure stories & lessons
-  about       - My full journey
-  help        - Show this message
-  clear       - Clear terminal
-  whoami      - Who am I?
-  projects    - List all projects
-  contact     - Get contact info
-  github      - View source code
-  
-Type 'help --secret' for easter eggs 🥚
+Available commands
+
+ Navigation
+   ls [dir]        list files            (try: ls projects/)
+   cat <file>      print a file          (try: cat about.md)
+   cd <section>    enter a section       (recruiter|founder|engineer|devops|systems|about)
+   tree            show the file tree
+   pwd             print working directory
+
+ Info
+   whoami          short bio
+   neofetch        system + profile summary
+   projects        list featured projects
+   contact         email, socials & upwork
+   date            current date/time
+   history         command history
+
+ Session
+   open <target>   open a link           (resume|github|linkedin|upwork)
+   clear           clear the screen
+   exit            back to visual mode
+   help            this message
+
+Tip: run 'help --secret' for easter eggs 🥚
 `;
 
 const SECRET_HELP = `
-🥚 Easter Eggs:
-  sudo hire-me    - Special hiring message
-  matrix          - Enter the Matrix
-  party           - Celebration mode
-  coffee          - Developer fuel
-  fortune         - Random wisdom
+🥚 Easter eggs
+   sudo hire-me     escalate privileges 😉
+   sudo rm -rf /    ...please don't
+   matrix           there is no spoon
+   cowsay <text>    a cow speaks
+   fortune          developer wisdom
+   coffee           refuel
+   party            🎉
+`;
+
+const NEOFETCH = `
+  ██╗   ██╗     visitor@vanshit-ahuja
+  ██║   ██║     ---------------------
+  ╚██╗ ██╔╝     OS:        portfolio.sh (Arch-based, btw)
+   ╚████╔╝      Shell:     zsh 5.9
+    ╚═══╝       Role:      Software Engineer & SRE
+                Edu:       BML Munjal University · CGPA 7.96
+                Uptime:    Open to opportunities
+                Projects:  20+ shipped · 5+ clients · 12 E2E
+                Stack:     React · Node · Python · Docker · K8s
+                Links:     github · linkedin · upwork
+`;
+
+const TREE = `
+/home/vanshit
+├── about.md
+├── experience.log
+├── skills.json
+├── contact.vcf
+├── resume.pdf
+└── projects/
+    ├── autofixops.md
+    ├── faultline.md
+    ├── vibe.md
+    ├── travel-planner.md
+    ├── glaucoma.md
+    └── applyops.md
+`;
+
+const WHOAMI = `
+Vanshit Ahuja
+Software Engineer & Site Reliability Engineer
+BML Munjal University • B.Tech CSE • CGPA 7.96
+
+> 20+ projects shipped
+> 5+ client projects (freelancing & internships)
+> 12 end-to-end systems built
+> Co-founded Mental Sync at 17 (2021-2022)
+> Specializing in reliability engineering & DevOps
+
+Email: vanshitahuja@gmail.com
+GitHub: github.com/vanshitahujaa
+`;
+
+const PROJECT_FILES = ['autofixops.md', 'faultline.md', 'vibe.md', 'travel-planner.md', 'glaucoma.md', 'applyops.md'];
+
+const FILES: Record<string, string> = {
+  'about.md': `
+# Vanshit Ahuja — Software Engineer & SRE
+
+I build production-ready systems with a focus on reliability,
+observability, and developer experience. From Kubernetes self-healing
+to chaos engineering and full-stack apps, I ship software that holds
+up under pressure.
+
+Location : India
+Status   : Open to opportunities
+`,
+  'experience.log': `
+[Jan 2025 - present]  Freelance · Cloud & DevOps Engineer
+  - K8s self-healing across 15+ microservices, ~60% lower MTTR
+  - Observability stack: Prometheus + Grafana + Loki, alerting
+  - Dockerized apps on AWS EC2, Nginx, SSL/TLS via Certbot
+
+[Jun 2024 - Jan 2025] Signity Software Solutions · SDE Intern
+  - Shipped 10+ React/TS features through Agile sprints
+  - CI/CD: cut GitHub Actions build+deploy 12m -> 7m
+`,
+  'skills.json': `
+{
+  "languages":  ["Python", "TypeScript", "JavaScript", "Java", "SQL", "Bash"],
+  "backend":    ["Node.js", "Express", "FastAPI", "REST", "WebSockets"],
+  "frontend":   ["React", "TypeScript", "Tailwind"],
+  "devops_sre": ["Docker", "Kubernetes", "Prometheus", "Grafana", "Loki", "CI/CD"],
+  "cloud":      ["AWS", "GCP"],
+  "data":       ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Kafka", "Qdrant"]
+}
+`,
+  'contact.vcf': `
+BEGIN:VCARD
+Name     : Vanshit Ahuja
+Email    : vanshitahuja@gmail.com
+GitHub   : github.com/vanshitahujaa
+LinkedIn : linkedin.com/in/vanshit-ahuja
+Upwork   : upwork.com/freelancers/~0173f50c6212e19412
+Status   : Open to opportunities
+END:VCARD
+`,
+  'projects/autofixops.md': `
+AutoFixOps — Self-Healing Framework for Kubernetes
+Stack: Python · FastAPI · Kubernetes · Prometheus · Qdrant · LangChain
+  - Two-tier incident engine (rules first, LLM fallback); opens PRs for review
+  - RAG over Qdrant surfaces similar prior incidents
+  - 11 defense-in-depth safety controls
+repo: github.com/vanshitahujaa/Auto_fix_Ops
+`,
+  'projects/faultline.md': `
+FaultLine — Chaos Engineering Platform
+Stack: Docker · Node.js · Express · React
+  - 8+ fault-injection scenarios, configurable blast radius + rollback
+  - 150+ Docker Hub pulls in month one
+repo: github.com/vanshitahujaa/FaultLine
+`,
+  'projects/vibe.md': `
+Vibe — Social Media Platform
+Stack: React · Supabase · PostgreSQL · WebSocket
+  - Cursor-based infinite scroll, real-time updates, row-level security
+live: vibe-social-media-application.vercel.app
+`,
+  'projects/travel-planner.md': `
+Travel Planner — Constraint-Aware AI
+Stack: React · Python · CSP · A*
+  - CSP + A* guarantee valid, conflict-free itineraries
+live: travel-planner-seven-rouge.vercel.app
+`,
+  'projects/glaucoma.md': `
+Glaucoma Detection — Medical ML
+Stack: FastAPI · React · EfficientNet · Grad-CAM
+  - Explainable inference with ROI extraction + CLAHE
+repo: github.com/vanshitahujaa/glaucoma-detection
+`,
+  'projects/applyops.md': `
+ApplyOps — Job Application Tracking
+Stack: Node.js · PostgreSQL · WebSockets · Google APIs · OAuth 2.0
+  - Real-time dashboard, sub-100ms queries
+  - Gmail + Calendar integration over OAuth 2.0
+live: apply-ops.vercel.app
+`,
+};
+
+function listDir(arg: string): string {
+  const a = arg.replace(/^\.\//, '').replace(/\/+$/, '').trim();
+  if (a === '' || a === '~' || a === '.' || a === '/home/vanshit') {
+    return 'about.md   experience.log   skills.json   contact.vcf   resume.pdf   projects/';
+  }
+  if (a === 'projects') {
+    return PROJECT_FILES.join('   ');
+  }
+  return `ls: cannot access '${arg}': No such file or directory`;
+}
+
+function readFile(arg: string): string {
+  const key = arg.replace(/^\.\//, '').replace(/^\//, '').trim();
+  if (!key) return 'cat: missing file operand (try: cat about.md)';
+  if (key in FILES) return FILES[key];
+  if (`projects/${key}` in FILES) return FILES[`projects/${key}`];
+  return `cat: ${arg}: No such file or directory`;
+}
+
+function cowsay(text: string): string {
+  const msg = text.trim() || 'ship it 🚀';
+  const bar = '-'.repeat(msg.length + 2);
+  return `
+ ${'_'.repeat(msg.length + 2)}
+< ${msg} >
+ ${bar}
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+`;
+}
+
+const RM_RF = `
+rm: it is dangerous to operate recursively on '/'
+rm: use --no-preserve-root to override this failsafe
+(relax — nothing was deleted 🙂)
 `;
 
 const MATRIX_ASCII = `
@@ -158,87 +341,110 @@ export default function CLI({ onModeChange }: CLIProps) {
   }, [history]);
 
   const handleCommand = (cmd: string) => {
-    const command = cmd.trim().toLowerCase();
+    const raw = cmd.trim();
+    const lower = raw.toLowerCase();
+    const tokens = raw.split(/\s+/);
+    const command = (tokens[0] || '').toLowerCase();
+    const args = tokens.slice(1);
+    const arg = args.join(' ');
+    const argL = arg.toLowerCase();
     let output = '';
 
-    if (['recruiter', 'founder', 'engineer', 'devops', 'systems', 'about'].includes(command)) {
+    // Bare section names navigate (back-compat with the mode buttons)
+    if (MODE_NAMES.includes(command)) {
       onModeChange(command);
       return;
     }
 
+    const openUrl = (url: string, label: string) => {
+      window.open(url, '_blank');
+      output = `Opening ${label}...`;
+    };
+
     switch (command) {
       case 'help':
-        output = HELP_TEXT;
+      case 'man':
+        output = argL === '--secret' || argL.includes('secret') ? SECRET_HELP : HELP_TEXT;
         break;
-      case 'help --secret':
-        output = SECRET_HELP;
+      case 'ls':
+      case 'dir':
+        output = listDir(argL);
         break;
-      case 'clear':
-        setHistory([]);
-        return;
+      case 'cat':
+      case 'less':
+      case 'more':
+        if (argL === 'resume.pdf' || argL === 'resume') {
+          openUrl('/data/vanshit_ahuja.pdf', 'resume.pdf');
+        } else {
+          output = readFile(argL);
+        }
+        break;
+      case 'cd': {
+        const dest = argL.replace(/\/+$/, '');
+        if (MODE_NAMES.includes(dest)) {
+          onModeChange(dest);
+          return;
+        }
+        if (dest === '' || dest === '~' || dest === '.' || dest === '..' || dest === '/home/vanshit') {
+          break; // already home
+        }
+        output = `cd: ${arg}: No such section\nTry: ${MODE_NAMES.join(' | ')}`;
+        break;
+      }
+      case 'pwd':
+        output = '/home/vanshit';
+        break;
+      case 'tree':
+        output = TREE;
+        break;
       case 'whoami':
-        output = `
-Vanshit Ahuja
-Software Engineer & Site Reliability Engineer
-BML Munjal University • B.Tech CSE • CGPA 7.96
-
-> 20+ projects shipped
-> 5+ client projects (freelancing & internships)
-> 12 end-to-end systems built
-> Co-founded Mental Sync at 17 (2021-2022)
-> Specializing in reliability engineering & DevOps
-
-Email: vanshitahuja@gmail.com
-GitHub: github.com/vanshitahujaa
-`;
+        output = WHOAMI;
+        break;
+      case 'neofetch':
+      case 'screenfetch':
+      case 'fetch':
+        output = NEOFETCH;
+        break;
+      case 'date':
+        output = new Date().toString();
+        break;
+      case 'echo':
+        output = args.join(' ');
+        break;
+      case 'history':
+        output = history.length
+          ? history.map((h, i) => `  ${String(i + 1).padStart(3, ' ')}  ${h.command}`).join('\n')
+          : '  (no history yet)';
         break;
       case 'projects':
-        output = `
-Featured Projects:
-
-1. AutoFixOps - Self-Healing Framework for Kubernetes
-   GitHub: github.com/vanshitahujaa/Auto_fix_Ops
-
-2. FaultLine - Chaos Engineering Platform
-   Docker Hub: hub.docker.com/r/vanshahuja/
-   GitHub: github.com/vanshitahujaa/FaultLine
-
-3. Vibe - Social Media Platform
-   Live: vibe-social-media-application.vercel.app
-
-4. Travel Planner - AI + CSP Algorithm
-   Live: travel-planner-seven-rouge.vercel.app
-
-5. Glaucoma Detection - Medical ML with Grad-CAM
-   GitHub: github.com/vanshitahujaa/glaucoma-detection
-
-6. ApplyOps - Job Application Automation Platform
-   Live: apply-ops.vercel.app
-   GitHub: github.com/vanshitahujaa/Apply-Ops
-`;
+        output = `projects/\n  ${PROJECT_FILES.join('\n  ')}\n\nRun  cat projects/<name>.md  for details.`;
         break;
       case 'contact':
-        output = `
-Email: vanshitahuja@gmail.com
-GitHub: github.com/vanshitahujaa
-LinkedIn: linkedin.com/in/vanshit-ahuja
-Upwork: upwork.com/freelancers/~0173f50c6212e19412
-
-Status: Open to opportunities!
-`;
+        output = FILES['contact.vcf'];
+        break;
+      case 'open':
+        if (argL === 'github') openUrl('https://github.com/vanshitahujaa', 'GitHub');
+        else if (argL === 'linkedin') openUrl('https://linkedin.com/in/vanshit-ahuja', 'LinkedIn');
+        else if (argL === 'upwork') openUrl('https://www.upwork.com/freelancers/~0173f50c6212e19412', 'Upwork');
+        else if (argL === 'resume' || argL === 'resume.pdf') openUrl('/data/vanshit_ahuja.pdf', 'resume.pdf');
+        else output = `open: unknown target '${arg}'\nTry: resume | github | linkedin | upwork`;
         break;
       case 'github':
-        output = `
-📦 Portfolio Source Code
-GitHub: github.com/vanshitahujaa/Portfolio
-
-Built with: React 19 + TypeScript + Three.js + Framer Motion
-Open source - feel free to fork and customize!
-`;
-        window.open('https://github.com/vanshitahujaa/Portfolio', '_blank');
+        openUrl('https://github.com/vanshitahujaa/Portfolio', 'source repo (github.com/vanshitahujaa/Portfolio)');
         break;
-      case 'sudo hire-me':
-        output = `
+      case 'clear':
+      case 'cls':
+        setHistory([]);
+        return;
+      case 'exit':
+      case 'logout':
+      case 'visual':
+      case 'gui':
+        setShowVisualMode(true);
+        return;
+      case 'sudo':
+        if (argL === 'hire-me' || argL === 'hire') {
+          output = `
 🎉 ACCESS GRANTED 🎉
 
 ╔═══════════════════════════════════════════════════════════╗
@@ -259,6 +465,17 @@ Open source - feel free to fork and customize!
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
 `;
+        } else if (lower.startsWith('sudo rm -rf')) {
+          output = RM_RF;
+        } else {
+          output = `[sudo] password for visitor: \nSorry, try again. (nice try 😏)`;
+        }
+        break;
+      case 'rm':
+        output = lower.includes('-rf') ? RM_RF : 'rm: missing operand';
+        break;
+      case 'cowsay':
+        output = cowsay(arg);
         break;
       case 'matrix':
         output = MATRIX_ASCII;
@@ -290,29 +507,18 @@ Thanks for exploring! You're awesome! 🌟
     \`----'
 
   "Code runs on caffeine and determination"
-  
+
   Current caffeine level: ████████░░ 80%
   Lines of code remaining: ∞
 `;
         break;
       case 'fortune':
-        output = `
-🔮 Your Developer Fortune:
-
-"${FORTUNES[Math.floor(Math.random() * FORTUNES.length)]}"
-
-Lucky numbers: ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}, ${Math.floor(Math.random() * 100)}
-Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() * 4)]}
-`;
+        output = `🔮  ${FORTUNES[Math.floor(Math.random() * FORTUNES.length)]}`;
         break;
-      case 'visual':
-      case 'gui':
-        setShowVisualMode(true);
-        return;
       case '':
         break;
       default:
-        output = `Command not found: ${command}\nType 'help' for available commands.`;
+        output = `command not found: ${command}\nType 'help' to list available commands.`;
     }
 
     setHistory(prev => [...prev, { command: cmd, output }]);
@@ -724,7 +930,12 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
 
             {/* Welcome message */}
             <div className="text-white/60 mb-4">
-              <p>Welcome! Type <span className="text-[#00d9ff]">help</span> for commands or click mode names below:</p>
+              <p>
+                Welcome to <span className="text-[#00d9ff]">portfolio.sh</span>. This is a real shell — try{' '}
+                <span className="text-[#22c55e]">ls</span>, <span className="text-[#22c55e]">cat about.md</span>,{' '}
+                <span className="text-[#22c55e]">neofetch</span>, or <span className="text-[#00d9ff]">help</span>.
+                <br />Use <span className="text-[#22c55e]">cd &lt;section&gt;</span> or click a section below:
+              </p>
               <p className="mt-2">
                 {modes.map((m, i) => (
                   <span key={m.id}>
@@ -745,8 +956,10 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
             {history.map((entry, i) => (
               <div key={i} className="mb-4">
                 <div className="flex items-center gap-2 text-white/80">
-                  <span className="text-[#22c55e]">➜</span>
+                  <span className="text-[#22c55e]">visitor@vanshit-ahuja</span>
+                  <span className="text-white/40">:</span>
                   <span className="text-[#00d9ff]">~</span>
+                  <span className="text-white/40">$</span>
                   <span>{entry.command}</span>
                 </div>
                 {entry.output && (
@@ -759,8 +972,10 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
 
             {/* Input Line */}
             <div className="flex items-center gap-2">
-              <span className="text-[#22c55e]">➜</span>
+              <span className="text-[#22c55e]">visitor@vanshit-ahuja</span>
+              <span className="text-white/40">:</span>
               <span className="text-[#00d9ff]">~</span>
+              <span className="text-white/40">$</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -768,7 +983,7 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="flex-1 bg-transparent text-white outline-none"
-                placeholder="Type a command..."
+                placeholder="type a command — try 'ls' or 'help'"
                 autoFocus
               />
               <span className="w-2 h-5 bg-white/60 animate-pulse" />
