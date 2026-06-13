@@ -81,7 +81,7 @@ const ASCII_INTRO = `
 ║    ╚████╔╝ ██║  ██║██║ ╚████║███████║██║  ██║██║   ██║           ║
 ║     ╚═══╝  ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝           ║
 ║                                                                   ║
-║   Software Engineer & SRE | 40+ Projects Shipped                  ║
+║   Software Engineer & SRE | 20+ Projects Shipped                  ║
 ║                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════╝
 `;
@@ -120,7 +120,7 @@ Follow the white rabbit.
 
 [!] Connection established to Vanshit's server
 [+] Skill tree loaded: Full-Stack, DevOps, SRE
-[+] Experience: 40+ projects compiled
+[+] Experience: 20+ projects compiled
 [>] Ready to deploy production code
 
 Knock, knock, ${new Date().getHours() < 12 ? 'Good morning' : new Date().getHours() < 18 ? 'Good afternoon' : 'Good evening'}...
@@ -180,10 +180,10 @@ export default function CLI({ onModeChange }: CLIProps) {
         output = `
 Vanshit Ahuja
 Software Engineer & Site Reliability Engineer
-BML Munjal University • B.Tech CSE • GPA 7.9
+BML Munjal University • B.Tech CSE • CGPA 7.96
 
-> 40+ projects shipped
-> 10+ client projects (freelancing & internships)  
+> 20+ projects shipped
+> 5+ client projects (freelancing & internships)
 > 12 end-to-end systems built
 > Co-founded Mental Sync at 17 (2021-2022)
 > Specializing in reliability engineering & DevOps
@@ -196,20 +196,23 @@ GitHub: github.com/vanshitahujaa
         output = `
 Featured Projects:
 
-1. FaultLine - Chaos Engineering Platform
+1. AutoFixOps - Self-Healing Framework for Kubernetes
+   GitHub: github.com/vanshitahujaa/Auto_fix_Ops
+
+2. FaultLine - Chaos Engineering Platform
    Docker Hub: hub.docker.com/r/vanshahuja/
    GitHub: github.com/vanshitahujaa/FaultLine
 
-2. Vibe - Social Media Platform  
+3. Vibe - Social Media Platform
    Live: vibe-social-media-application.vercel.app
 
-3. Travel Planner - AI + CSP Algorithm
+4. Travel Planner - AI + CSP Algorithm
    Live: travel-planner-seven-rouge.vercel.app
 
-4. Glaucoma Detection - Medical ML with Grad-CAM
+5. Glaucoma Detection - Medical ML with Grad-CAM
    GitHub: github.com/vanshitahujaa/glaucoma-detection
 
-5. ApplyOps - Job Application Automation Platform
+6. ApplyOps - Job Application Automation Platform
    Live: apply-ops.vercel.app
    GitHub: github.com/vanshitahujaa/Apply-Ops
 `;
@@ -219,6 +222,7 @@ Featured Projects:
 Email: vanshitahuja@gmail.com
 GitHub: github.com/vanshitahujaa
 LinkedIn: linkedin.com/in/vanshit-ahuja
+Upwork: upwork.com/freelancers/~0173f50c6212e19412
 
 Status: Open to opportunities!
 `;
@@ -569,8 +573,8 @@ Lucky framework: ${['React', 'Vue', 'Svelte', 'Solid'][Math.floor(Math.random() 
             <h2 className="text-xl font-semibold text-white mb-8">What People Say</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
-                { name: 'Kamal Kant', role: 'Founder & CEO', company: 'Dental AI', quote: 'Vanshit delivered our MVP in record time. The code was clean, well-documented, and the system has been running flawlessly for months.' },
-                { name: 'Weizhi Li', role: 'CEO', company: 'Adaptive Machines', quote: 'Exceptional work on our machine learning pipeline. Production-ready code that exceeded our expectations.' },
+                { name: 'Prince Kunal', role: 'Verified Client', company: 'Trademark Search Pro', quote: 'Vanshit set up replication for our server and built our Trademark Search Pro API platform end-to-end — delivered on time, with health monitoring and a full admin panel. When new issues came up after delivery, he fixed them for free.' },
+                { name: 'Dominic', role: 'Verified Client', company: 'France', quote: 'Vansh is a really smart engineer. He proposes better solutions on his own and optimizes the requirements too.' },
               ].map((testimonial, i) => (
                 <motion.div
                   key={testimonial.name}

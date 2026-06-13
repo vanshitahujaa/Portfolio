@@ -24,7 +24,7 @@ const timeline: TimelineItem[] = [
     {
         year: '2023',
         title: 'Started B.Tech in CSE',
-        description: 'Began Computer Science journey at BML Munjal University (GPA: 7.9) with focus on systems and backend development.',
+        description: 'Began Computer Science journey at BML Munjal University (CGPA: 7.96) with focus on systems and backend development.',
         type: 'education',
     },
     {
@@ -35,20 +35,14 @@ const timeline: TimelineItem[] = [
     },
     {
         year: '2024',
-        title: 'Team Lead at Bluestock',
-        description: 'Led an 8-member team at Bluestock. Managed sprint planning, code reviews, and delivery of client projects.',
-        type: 'work',
-    },
-    {
-        year: '2024',
         title: 'Built FaultLine',
         description: 'Created production-ready chaos engineering platform for Docker. 9/9 tests passing, published on Docker Hub.',
         type: 'project',
     },
     {
         year: '2025',
-        title: '40+ Projects Shipped',
-        description: '40+ projects including 10+ for enterprise clients, 12 end-to-end systems. Open to opportunities.',
+        title: '20+ Projects Shipped',
+        description: '20+ projects including 5+ for clients, 12 end-to-end systems. Open to opportunities.',
         type: 'achievement',
     },
 ];
@@ -206,7 +200,7 @@ export default function AboutPage() {
                     >
                         <h2 className="text-4xl font-bold text-white mb-4">My Journey</h2>
                         <p className="text-white/60 max-w-xl mx-auto">
-                            From curious coder to team lead, here's how my path has evolved.
+                            From curious coder to shipping production systems, here's how my path has evolved.
                         </p>
                     </motion.div>
 

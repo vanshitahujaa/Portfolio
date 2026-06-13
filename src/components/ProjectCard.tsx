@@ -14,6 +14,13 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
     {
+        title: 'AutoFixOps',
+        description: 'Self-healing framework for Kubernetes. Ingests Prometheus alerts and classifies incidents through a two-tier engine (deterministic rules first, LLM fallback), opening GitHub PRs for engineer review before any production change. RAG layer over Qdrant surfaces similar past incidents; 11 defense-in-depth safety controls (action allowlist, circuit breaker, anti-thrashing gates, Fernet-encrypted tokens).',
+        techStack: ['Python', 'FastAPI', 'Kubernetes', 'Prometheus', 'Qdrant', 'LangChain', 'React', 'PostgreSQL'],
+        githubUrl: 'https://github.com/vanshitahujaa/Auto_fix_Ops',
+        accentColor: '#ec4899',
+    },
+    {
         title: 'FaultLine',
         description: 'Production-ready Chaos Engineering Platform for Docker. Deploy containers, inject controlled failures (kill, latency, memory pressure), visualize recovery in real-time. 9/9 tests passing, 8 critical bugs fixed.',
         techStack: ['Node.js', 'Express', 'React', 'Docker', 'Docker Compose', 'Dockerode', 'Nginx'],

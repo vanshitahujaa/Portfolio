@@ -22,7 +22,7 @@ export default function TopBar({ mode, onBack, onNavigate }: TopBarProps) {
   const accentColor = modeColors[mode] || '#00d9ff';
 
   const handleDownload = () => {
-    window.open('/data/Vanshit_SDE_Resume.pdf', '_blank');
+    window.open('/data/vanshit_ahuja.pdf', '_blank');
   };
 
   const handleContact = () => {

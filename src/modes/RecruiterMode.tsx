@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Calendar, Award, Briefcase, Code2, Server, GraduationCap, BookOpen } from 'lucide-react';
-import BioSection from '../components/BioSection';
+import BioSection, { UpworkIcon } from '../components/BioSection';
 import ProjectCard, { PROJECTS } from '../components/ProjectCard';
 import { ResumeButton, ContactButton } from '../components/PremiumButton';
 import Floating3D from '../components/Floating3D';
@@ -8,33 +8,23 @@ import Floating3D from '../components/Floating3D';
 export default function RecruiterMode() {
   const experience = [
     {
-      company: 'Bluestock™',
-      role: 'Team Lead',
-      period: 'Dec 2024 – Jan 2025',
+      company: 'Freelance',
+      role: 'Cloud & DevOps Engineer',
+      period: 'Jan 2025 – Present',
       highlights: [
-        'Led 8-member team: code reviews, delivery management, and sprint planning',
-        'Built SEO optimization algorithm for improved keyword clustering',
-        'Delivered responsive prototypes and managed client deliverables',
+        'Built a Kubernetes self-healing system across 15+ microservices using pod restart policies and liveness/readiness probes — cut MTTR by ~60%',
+        'Deployed a full observability stack (Prometheus, Grafana, Loki) with alerting on CPU, memory, pod restarts, and error rates',
+        'Deployed Dockerized apps on AWS EC2 with Nginx reverse proxy and SSL/TLS via Certbot, designed for predictable recovery from failures',
+        'Tuned alert thresholds from real incident patterns and documented incident-response runbooks',
       ],
     },
     {
       company: 'Signity Software Solutions',
       role: 'SDE Intern',
-      period: '2 Months (Cumulative)',
+      period: 'Jun 2024 – Jan 2025',
       highlights: [
-        'Built responsive React.js UI components with TypeScript — 15% faster page loads',
-        'Optimized core backend services — 30% improvement in request throughput',
-        'Automated deployment pipelines — reduced release time by 20%',
-      ],
-    },
-    {
-      company: 'Freelance',
-      role: 'Full-Stack Developer',
-      period: '2022 – Present',
-      highlights: [
-        'Delivered 10+ projects for enterprise clients',
-        'Specialized in React, Node.js, Python, FastAPI',
-        'End-to-end ownership from requirements to deployment',
+        'Shipped 10+ frontend features in React and TypeScript on a client-facing web app through Agile sprints',
+        'Optimized GitHub Actions CI/CD pipelines, cutting build and deploy time from 12 to 7 minutes via parallelization and dependency caching',
       ],
     },
   ];
@@ -66,8 +56,8 @@ export default function RecruiterMode() {
   ];
 
   const highlights = [
-    { icon: Code2, label: '40+ Projects', description: 'Shipped across industries', color: '#00d9ff' },
-    { icon: Briefcase, label: '10+ Clients', description: 'Freelance & internships', color: '#8b5cf6' },
+    { icon: Code2, label: '20+ Projects', description: 'Shipped across industries', color: '#00d9ff' },
+    { icon: Briefcase, label: '5+ Clients', description: 'Freelance & internships', color: '#8b5cf6' },
     { icon: Server, label: '12 E2E Systems', description: 'Full production apps', color: '#f59e9b' },
   ];
 
@@ -156,6 +146,16 @@ export default function RecruiterMode() {
                 >
                   <Linkedin className="w-5 h-5" />
                   LinkedIn Profile
+                </a>
+
+                <a
+                  href="https://www.upwork.com/freelancers/~0173f50c6212e19412"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full bg-[#6fda44]/10 border border-[#6fda44]/20 text-[#6fda44] hover:bg-[#6fda44]/20 transition-all"
+                >
+                  <UpworkIcon className="w-5 h-5" />
+                  Hire on Upwork
                 </a>
               </div>
 
@@ -467,6 +467,15 @@ export default function RecruiterMode() {
                   whileHover={{ scale: 1.2, rotate: -5 }}
                 >
                   <Linkedin className="w-6 h-6" />
+                </motion.a>
+                <motion.a
+                  href="https://www.upwork.com/freelancers/~0173f50c6212e19412"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/50 hover:text-[#6fda44] transition-colors"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                >
+                  <UpworkIcon className="w-6 h-6" />
                 </motion.a>
               </div>
             </div>

@@ -110,7 +110,7 @@ export default function GitHubStats() {
                     className="text-center p-4 rounded-xl bg-white/5"
                     whileHover={{ scale: 1.02 }}
                 >
-                    <div className="text-3xl font-bold text-white">40+</div>
+                    <div className="text-3xl font-bold text-white">20+</div>
                     <div className="text-white/50 text-sm">Projects</div>
                 </motion.div>
                 <motion.div

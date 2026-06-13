@@ -50,8 +50,8 @@ export default function FounderMode() {
   ];
 
   const impactMetrics = [
-    { value: '40+', label: 'Projects Shipped' },
-    { value: '10+', label: 'Client Projects' },
+    { value: '20+', label: 'Projects Shipped' },
+    { value: '5+', label: 'Client Projects' },
     { value: '12', label: 'End-to-End Systems' },
     { value: '1', label: 'Startup Founded' },
   ];
@@ -108,7 +108,7 @@ export default function FounderMode() {
             transition={{ delay: 0.4 }}
             className="text-xl text-white/60 max-w-2xl mx-auto"
           >
-            From co-founding a startup at 17 to shipping 40+ projects for clients and companies.
+            From co-founding a startup at 17 to shipping 20+ projects for clients and companies.
             I take ownership from idea to production.
           </motion.p>
         </motion.section>

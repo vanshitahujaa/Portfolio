@@ -151,7 +151,7 @@ export function ResumeButton({ className = '' }: { className?: string }) {
         <PremiumButton
             variant="primary"
             icon="download"
-            href="/data/Vanshit_SDE_Resume.pdf"
+            href="/data/vanshit_ahuja.pdf"
             className={className}
         >
             Download Resume

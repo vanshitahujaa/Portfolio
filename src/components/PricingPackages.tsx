@@ -1,35 +1,37 @@
 import { motion } from 'framer-motion';
-import { Clock, CheckCircle, MessageSquare } from 'lucide-react';
+import { Clock, CheckCircle, MessageSquare, Star } from 'lucide-react';
+import { UpworkIcon } from './BioSection';
 
 export const freelancePackages = [
     {
-        name: 'MVP Development',
-        price: '$2,500+',
-        duration: '2-4 weeks',
-        description: 'Full-stack MVP with deployment',
-        features: ['React/Next.js Frontend', 'Node.js/FastAPI Backend', 'Database Setup', 'Docker Deployment', 'Basic CI/CD'],
-        color: '#00d9ff',
+        name: 'DevOps & Monitoring',
+        price: 'from $30/hr',
+        duration: '3-7 days',
+        description: 'Infra, CI/CD & observability',
+        features: ['Docker / Compose setup', 'CI/CD pipelines (GitHub Actions)', 'Prometheus + Grafana dashboards', 'Server replication & backups', 'Alerting & health checks'],
+        color: '#22c55e',
     },
     {
-        name: 'Backend Systems',
-        price: '$1,500+',
+        name: 'API / Backend Platform',
+        price: 'from $20/hr',
         duration: '1-3 weeks',
-        description: 'API design & development',
-        features: ['REST/GraphQL APIs', 'Database Design', 'Authentication', 'Rate Limiting', 'Documentation'],
+        description: 'End-to-end APIs & data',
+        features: ['REST APIs (Node.js / FastAPI)', 'Database design & indexing', 'Auth, rate limiting & RBAC', 'Admin & health dashboards', 'Docs + deployment'],
         color: '#8b5cf6',
     },
     {
-        name: 'DevOps Setup',
-        price: '$800+',
-        duration: '3-7 days',
-        description: 'Infrastructure & automation',
-        features: ['Docker/Compose', 'CI/CD Pipelines', 'Monitoring Setup', 'Cloud Deployment', 'Health Checks'],
-        color: '#22c55e',
+        name: 'Full Website',
+        price: 'from $15/hr',
+        duration: '2-4 weeks',
+        description: 'End-to-end web app — 3D optional',
+        features: ['React / Next.js frontend', 'Backend + database', 'Optional 3D / motion design', 'Responsive + SEO ready', 'Deployment & handover'],
+        color: '#00d9ff',
     },
 ];
 
 export default function PricingPackages() {
     return (
+        <div className="space-y-6">
         <div className="grid md:grid-cols-3 gap-6">
             {freelancePackages.map((pkg, i) => (
                 <motion.div
@@ -88,6 +90,27 @@ export default function PricingPackages() {
                     </a>
                 </motion.div>
             ))}
+        </div>
+
+            {/* Trust line */}
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-white/50">
+                <span className="flex items-center gap-1.5 text-[#22c55e]">
+                    <Star className="w-4 h-4 fill-current" />
+                    5-star rated by clients
+                </span>
+                <span className="text-white/20">•</span>
+                <span>On-time delivery</span>
+                <span className="text-white/20">•</span>
+                <a
+                    href="https://www.upwork.com/freelancers/~0173f50c6212e19412"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-[#6fda44] hover:underline"
+                >
+                    <UpworkIcon className="w-4 h-4" />
+                    Hire on Upwork
+                </a>
+            </div>
         </div>
     );
 }

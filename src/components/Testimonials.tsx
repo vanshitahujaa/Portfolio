@@ -12,34 +12,22 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
     {
-        name: 'Kamal Kant',
-        role: 'Founder & CEO',
-        company: 'Dental AI',
-        quote: 'Vanshit worked on our MVP in record time. The code was clean, well-documented, and the system has been running smoothly for months. Highly recommend for any full-stack work.',
+        name: 'Prince Kunal',
+        role: 'Verified Client',
+        company: 'Replication, Monitoring & Trademark Search Pro',
+        quote: 'Vanshit is knowledgeable and truly knows his work. He set up replication for our server and delivered a monitoring dashboard as an add-on, so we can watch replication around the clock. He later built our Trademark Search Pro API platform end-to-end — a big project — and delivered it on the agreed timelines, complete with health monitoring and a full admin panel. He finished ahead of schedule, and when new issues came up after delivery, he fixed them for free. We wish him all the very best and will happily work with him again.',
     },
     {
-        name: 'Weizhi Li',
-        role: 'CEO',
-        company: 'Adaptive Machines',
-        quote: 'Exceptional work on our machine learning pipeline. Vanshit took ownership of the entire project and delivered production-ready code that exceeded our expectations.',
+        name: 'Dominic',
+        role: 'Verified Client',
+        company: 'France',
+        quote: 'Vansh is a really smart engineer. He proposes better solutions on his own and optimizes the requirements too. A pleasure to work with.',
     },
     {
-        name: 'Rahul Sharma',
-        role: 'CTO',
-        company: 'FinStack',
-        quote: 'One of the most reliable developers I\'ve worked with. His ability to understand complex requirements and translate them into scalable solutions is impressive.',
-    },
-    {
-        name: 'Sarah Chen',
-        role: 'Product Lead',
-        company: 'TechStart',
-        quote: 'Vanshit shipped our platform 2 weeks ahead of schedule. Great communication, clean architecture, and excellent attention to detail.',
-    },
-    {
-        name: 'Arjun Mehta',
-        role: 'Founder',
-        company: 'CloudNine SaaS',
-        quote: 'Hired Vanshit for a complex integration project. He navigated technical challenges smoothly and delivered a robust solution that\'s been running flawlessly.',
+        name: 'Saumil Gupta',
+        role: 'Verified Client',
+        company: 'Upwork',
+        quote: 'He did an excellent job and delivered everything exactly as described at the start. Highly recommended.',
     },
 ];
 
