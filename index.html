@@ -3,14 +3,26 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <!-- Favicons & PWA -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preload" as="image" href="/vanshit-photo.jpg" fetchpriority="high" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0a0a0f" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="application-name" content="Vanshit Ahuja" />
+  <meta name="apple-mobile-web-app-title" content="Vanshit Ahuja" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="msapplication-TileColor" content="#0a0a0f" />
 
   <!-- Primary SEO Meta Tags -->
   <title>Vanshit Ahuja — Software Engineer & SRE | Portfolio</title>
   <meta name="description"
-    content="Vanshit Ahuja is a Software Engineer & Site Reliability Engineer from India. 20+ projects shipped including AutoFixOps, FaultLine, ApplyOps, Vibe. Expert in chaos engineering, Kubernetes self-healing, DevOps, React, Node.js, and full-stack development. BML Munjal University." />
+    content="Vanshit Ahuja — Software Engineer & SRE from India. I build reliable, observable systems: Kubernetes self-healing, chaos engineering, and full-stack apps in React, Node.js & Python." />
   <meta name="keywords"
     content="Vanshit Ahuja, Vanshit, vanshitahuja, Vanshit Ahuja portfolio, Vanshit Ahuja software engineer, Vanshit Ahuja developer, Vanshit SRE, Vanshit Ahuja BML Munjal, Software Engineer India, SRE, Site Reliability Engineer, DevOps Engineer, Full Stack Developer, Backend Developer, Chaos Engineering, AutoFixOps, FaultLine, ApplyOps, Vibe, Docker, Kubernetes, React, Node.js, TypeScript, Python, FastAPI, PostgreSQL" />
   <meta name="author" content="Vanshit Ahuja" />
@@ -25,8 +37,12 @@
   <meta property="og:title" content="Vanshit Ahuja — Software Engineer & SRE | Portfolio" />
   <meta property="og:description"
     content="Vanshit Ahuja — Software Engineer building production-ready systems. 20+ projects shipped for enterprises and startups. Expert in chaos engineering, DevOps, and full-stack development." />
-  <meta property="og:image" content="https://vanshitahuja.online/vanshit-photo.jpg" />
-  <meta property="og:image:alt" content="Vanshit Ahuja - Software Engineer" />
+  <meta property="og:image" content="https://vanshitahuja.online/og-image.png" />
+  <meta property="og:image:secure_url" content="https://vanshitahuja.online/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Vanshit Ahuja — Software Engineer & SRE" />
   <meta property="og:locale" content="en_US" />
 
   <!-- Twitter -->
@@ -34,8 +50,8 @@
   <meta name="twitter:title" content="Vanshit Ahuja — Software Engineer & SRE" />
   <meta name="twitter:description"
     content="Vanshit Ahuja — Software Engineer specializing in reliability engineering and DevOps. 20+ projects shipped. Building systems that don't break." />
-  <meta name="twitter:image" content="https://vanshitahuja.online/vanshit-photo.jpg" />
-  <meta name="twitter:image:alt" content="Vanshit Ahuja - Software Engineer" />
+  <meta name="twitter:image" content="https://vanshitahuja.online/og-image.png" />
+  <meta name="twitter:image:alt" content="Vanshit Ahuja — Software Engineer & SRE" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://vanshitahuja.online/" />
@@ -44,27 +60,46 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Vanshit Ahuja",
-    "alternateName": "Vanshit",
-    "url": "https://vanshitahuja.online",
-    "image": "https://vanshitahuja.online/vanshit-photo.jpg",
-    "jobTitle": "Software Engineer & Site Reliability Engineer",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Freelance"
-    },
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "BML Munjal University"
-    },
-    "knowsAbout": ["Software Engineering", "Site Reliability Engineering", "DevOps", "Chaos Engineering", "React", "Node.js", "TypeScript", "Python", "Docker", "Kubernetes", "PostgreSQL"],
-    "sameAs": [
-      "https://github.com/vanshitahujaa",
-      "https://linkedin.com/in/vanshit-ahuja",
-      "https://www.upwork.com/freelancers/~0173f50c6212e19412"
-    ],
-    "description": "Software Engineer & SRE with 20+ projects shipped. Building production-ready systems with a focus on reliability, observability, and developer experience."
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://vanshitahuja.online/#person",
+        "name": "Vanshit Ahuja",
+        "alternateName": "Vanshit",
+        "url": "https://vanshitahuja.online",
+        "image": "https://vanshitahuja.online/vanshit-photo.jpg",
+        "email": "mailto:vanshitahuja@gmail.com",
+        "jobTitle": "Software Engineer & Site Reliability Engineer",
+        "description": "Software Engineer & SRE building reliable, observable systems — Kubernetes self-healing, chaos engineering, and full-stack apps.",
+        "knowsLanguage": ["English", "Hindi"],
+        "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+        "worksFor": { "@type": "Organization", "name": "Freelance" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "BML Munjal University" },
+        "knowsAbout": ["Site Reliability Engineering", "DevOps", "Kubernetes", "Chaos Engineering", "Observability", "React", "Node.js", "TypeScript", "Python", "FastAPI", "Docker", "PostgreSQL"],
+        "sameAs": [
+          "https://github.com/vanshitahujaa",
+          "https://linkedin.com/in/vanshit-ahuja",
+          "https://www.upwork.com/freelancers/~0173f50c6212e19412"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://vanshitahuja.online/#website",
+        "url": "https://vanshitahuja.online",
+        "name": "Vanshit Ahuja — Portfolio",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://vanshitahuja.online/#person" }
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://vanshitahuja.online/#webpage",
+        "url": "https://vanshitahuja.online",
+        "name": "Vanshit Ahuja — Software Engineer & SRE | Portfolio",
+        "isPartOf": { "@id": "https://vanshitahuja.online/#website" },
+        "about": { "@id": "https://vanshitahuja.online/#person" },
+        "primaryImageOfPage": "https://vanshitahuja.online/og-image.png"
+      }
+    ]
   }
   </script>
 
